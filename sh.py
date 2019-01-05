@@ -129,6 +129,7 @@ def Coef2D(khs):
 def Velpad(vel,nPMLs,factor):
     from scipy.ndimage import gaussian_filter as gf
     velPML= np.pad(vel,[[nPMLs[0],nPMLs[1]],[nPMLs[2],nPMLs[3]]],'edge')
+    velPML= np.pad(vel,[nPMLs[:2],nPMLs[2:]],'edge')
     Nz,Nx = np.shape(velPML)
     for iz in range(nPMLs[0]):
         velPML[iz,:]=gf(velPML[iz,:],(nPMLs[0]-iz)*factor)
